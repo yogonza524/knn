@@ -75,7 +75,7 @@ public class Knn {
                     claseMayor = j;
                 }
             }
-            salida = salida + "El punto " + puntosClass.get(i) + " es de la clase " + claseMayor + "\n";
+            salida = salida + "El punto " + puntosClass.get(i) + " es de la clase " + claseMayor + "(" + UtilKnn.COLORES_POR_NOMBRE[claseMayor] + ")" + "\n";
             for (int j = 0; j < cantClases; j++) {
                 if (vectorClase[j]>0) {
                     double cant = vectorClase[j];

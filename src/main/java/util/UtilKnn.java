@@ -8,6 +8,8 @@ package util;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.paint.Color;
+import ru.lanwen.verbalregex.VerbalExpression;
+import static ru.lanwen.verbalregex.VerbalExpression.regex;
 
 /**
  * Utilitario 
@@ -17,6 +19,18 @@ public class UtilKnn {
     
     protected static final Color[] COLORES = {Color.RED, Color.BLUE, Color.GREENYELLOW, Color.AQUAMARINE, Color.ORANGE, Color.DARKMAGENTA};
     protected static final String[] COLORES_POR_NOMBRE = {"Rojo", "Azul", "Verde", "Celeste", "Naranja", "Violeta"};
+   
+    private static String errorDeIndice = "";
+
+    public static String getErrorDeIndice() {
+        return errorDeIndice;
+    }
+
+    public static void setErrorDeIndice(String errorDeIndice) {
+        UtilKnn.errorDeIndice = errorDeIndice;
+    }
+    
+    
     
     public static List<List<Double>> cargarPuntos(String entradaString, int dim){
         List<List<Double>> salida = new ArrayList<>();
@@ -37,15 +51,21 @@ public class UtilKnn {
     
     private static ArrayList<Double> getPunto(String linea, int dim){
         ArrayList<Double> salida = new ArrayList<>();
-        if (!linea.isEmpty() && !linea.equals(";")) {
-            String aux;
-            for (int i = 0; i < dim-1; i++) {
-                aux = linea.substring(0, linea.indexOf(','));
+        try {
+            if (!linea.isEmpty() && !linea.equals(";")) {
+                String aux;
+                for (int i = 0; i < dim-1; i++) {
+                    System.out.println(linea);
+                    aux = linea.replaceAll("\\s+" , "").substring(0, linea.indexOf(','));
+                    salida.add(Double.valueOf(aux));
+                    linea = linea.substring(linea.indexOf(',')+1);
+                }
+                aux = linea.substring(0, linea.indexOf(';'));
                 salida.add(Double.valueOf(aux));
-                linea = linea.substring(linea.indexOf(',')+1);
             }
-            aux = linea.substring(0, linea.indexOf(';'));
-            salida.add(Double.valueOf(aux));
+        } catch (Exception e) {
+            e.printStackTrace();
+            salida = null;
         }
         return salida;
     }
@@ -57,12 +77,16 @@ public class UtilKnn {
         Plot puntoG;
         for (int i = 0; i < puntos.size(); i++) {
             double y = (double) puntos.get(i).get(1);
-            puntoG = new Plot(
-                x -> y ,
-                puntos.get(i).get(0)-diferencia, puntos.get(i).get(0)+diferencia, ancho,
-                axes, 7.0, COLORES[puntos.get(i).get(2).intValue()]
-            );
-            puntosGraf.add(puntoG);
+            try {
+                puntoG = new Plot(
+                    x -> y ,
+                    puntos.get(i).get(0)-diferencia, puntos.get(i).get(0)+diferencia, ancho,
+                    axes, 7.0, COLORES[puntos.get(i).get(2).intValue()]
+                );
+                puntosGraf.add(puntoG);
+            } catch (Exception e) {
+                errorDeIndice = "Entrada no válida, fuera de rango de clase: " +  puntos.get(i).get(2).intValue();
+            }
         }
         return puntosGraf;
     }

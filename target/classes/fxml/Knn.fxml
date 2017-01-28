@@ -1,13 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pichon.modulokvecinos.KNNController">
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pichon.modulokvecinos.KNNController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <bottom>
@@ -21,22 +35,23 @@
                                  <children>
                                     <HBox prefHeight="28.0" prefWidth="276.0">
                                        <children>
-                                          <Label prefWidth="80.0" text="Vecinos">
+                                          <Label prefHeight="16.0" prefWidth="64.0" text="Vecinos">
                                              <HBox.margin>
                                                 <Insets left="10.0" right="10.0" top="3.0" />
                                              </HBox.margin>
                                           </Label>
                                           <ChoiceBox fx:id="cantVecinos" prefHeight="25.0" prefWidth="121.0" />
+                                          <Hyperlink fx:id="vecinosLink" onAction="#mostrarPopUpVecinos" text="ayuda" />
                                        </children>
                                     </HBox>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="19.0" prefWidth="276.0">
+                                    <HBox fx:id="entradasLabel" alignment="CENTER_LEFT" prefHeight="19.0" prefWidth="276.0">
                                        <children>
                                           <Label text="Entradas a clasificar">
                                              <HBox.margin>
                                                 <Insets left="10.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Hyperlink text="?" />
+                                          <Hyperlink onAction="#mostrarEntradasAClasificarPop" text="ayuda" />
                                        </children>
                                     </HBox>
                                     <TextArea fx:id="entradasClasificar" prefHeight="93.0" prefWidth="276.0" text="12,4;&#10;8,-10;&#10;-16,-4;&#10;2,-2;" VBox.vgrow="ALWAYS">
@@ -71,7 +86,29 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="234.0" prefWidth="802.0">
                            <children>
-                              <TextArea fx:id="resultado" layoutX="27.6" layoutY="29.6" prefHeight="187.0" prefWidth="764.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="10.0" />
+                              <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <center>
+                                    <TextArea fx:id="resultado" prefHeight="187.0" prefWidth="764.0" BorderPane.alignment="CENTER" />
+                                 </center>
+                                 <top>
+                                    <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                      <items>
+                                        <Button mnemonicParsing="false" onAction="#borrarResultados" text="Borrar" />
+                                          <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="8.0" />
+                                          <Label contentDisplay="CENTER" layoutX="85.0" layoutY="11.0" prefHeight="26.0" prefWidth="48.0" style="-fx-background-color: red; -fx-text-fill: white; -fx-alignment: center; -fx-font-family: Calibri;" text="0" textAlignment="RIGHT">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                          </Label>
+                                          <Label layoutX="85.0" layoutY="11.0" prefHeight="26.0" prefWidth="48.0" style="-fx-background-color: blue; -fx-text-fill: white; -fx-alignment: center; -fx-font-family: Calibri;" text="1" />
+                                          <Label layoutX="137.0" layoutY="11.0" prefHeight="26.0" prefWidth="48.0" style="-fx-background-color: green; -fx-text-fill: white; -fx-alignment: center;" text="2" />
+                                          <Label layoutX="189.0" layoutY="11.0" prefHeight="26.0" prefWidth="48.0" style="-fx-background-color: rgb(102,246,246); -fx-text-fill: black; -fx-alignment: center; -fx-font-family: Calibri;" text="3" />
+                                          <Label layoutX="241.0" layoutY="11.0" prefHeight="26.0" prefWidth="48.0" style="-fx-background-color: orange; -fx-text-fill: white; -fx-alignment: center;" text="4" />
+                                          <Label layoutX="293.0" layoutY="11.0" prefHeight="26.0" prefWidth="48.0" style="-fx-background-color: violet; -fx-text-fill: white; -fx-alignment: center;" text="5" />
+                                      </items>
+                                    </ToolBar>
+                                 </top>
+                              </BorderPane>
                            </children>
                         </AnchorPane>
                      </content>
@@ -90,6 +127,18 @@
                            </content>
                         </ScrollPane>
                      </center>
+                     <top>
+                        <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <items>
+                              <ComboBox onAction="#seleccionComboX" prefHeight="26.0" prefWidth="74.0" promptText="-X" fx:id="xCombo" />
+                              <ComboBox layoutX="10.0" layoutY="11.0" onAction="#seleccionComboX1" prefHeight="26.0" prefWidth="74.0" promptText="X" fx:id="xCombo1" />
+                              <ComboBox fx:id="yCombo" layoutX="78.0" layoutY="11.0" onAction="#seleccionComboY" prefHeight="26.0" prefWidth="74.0" promptText="-Y" />
+                              <ComboBox fx:id="yCombo1" layoutX="146.0" layoutY="11.0" onAction="#seleccionComboY1" prefHeight="26.0" prefWidth="74.0" promptText="Y" />
+                              <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+                              <Button mnemonicParsing="false" onAction="#resetearGrafico" text="Borrar" />
+                           </items>
+                        </ToolBar>
+                     </top>
                   </BorderPane>
                </content>
             </TitledPane>
@@ -105,12 +154,13 @@
                                  <children>
                                     <HBox prefHeight="28.0" prefWidth="276.0">
                                        <children>
-                                          <Label prefWidth="80.0" text="Dimensiones">
+                                          <Label prefHeight="16.0" prefWidth="99.0" text="Dimensiones">
                                              <HBox.margin>
                                                 <Insets left="10.0" right="10.0" top="3.0" />
                                              </HBox.margin>
                                           </Label>
                                           <ChoiceBox fx:id="dimension" prefHeight="25.0" prefWidth="95.0" />
+                                          <Hyperlink fx:id="dimLink" onAction="#mostrarPopDimension" text="ayuda" />
                                        </children>
                                        <VBox.margin>
                                           <Insets top="5.0" />
@@ -118,12 +168,12 @@
                                     </HBox>
                                     <HBox prefHeight="19.0" prefWidth="276.0">
                                        <children>
-                                          <Label text="Patrones de entrada">
+                                          <Label fx:id="patronesEntradaLabel" text="Patrones de entrada">
                                              <HBox.margin>
                                                 <Insets left="10.0" top="3.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Hyperlink text="?">
+                                          <Hyperlink fx:id="entradasLink" onAction="#mostrarLeyendaEntradas" text="ayuda">
                                              <HBox.margin>
                                                 <Insets left="5.0" />
                                              </HBox.margin>
@@ -135,21 +185,13 @@
                                           <Insets left="10.0" right="10.0" />
                                        </VBox.margin>
                                     </TextArea>
-                                    <HBox prefHeight="44.0" prefWidth="276.0">
-                                       <children>
-                                          <Pane prefHeight="44.0" prefWidth="108.0" HBox.hgrow="ALWAYS" />
-                                          <Button mnemonicParsing="false" onAction="#generarRed" text="Generar">
-                                             <HBox.margin>
-                                                <Insets top="10.0" />
-                                             </HBox.margin>
-                                          </Button>
-                                          <Button mnemonicParsing="false" onAction="#resetear" text="Resetear">
-                                             <HBox.margin>
-                                                <Insets left="25.0" right="10.0" top="10.0" />
-                                             </HBox.margin>
-                                          </Button>
-                                       </children>
-                                    </HBox>
+                                    <ToolBar prefHeight="40.0" prefWidth="200.0">
+                                      <items>
+                                        <Button fx:id="btnDeArchivo" mnemonicParsing="false" onAction="#cargarDesdeArchivo" text="De Archivo" />
+                                          <Button mnemonicParsing="false" onAction="#generarRed" prefHeight="26.0" prefWidth="72.0" text="Generar" />
+                                          <Button mnemonicParsing="false" onAction="#resetear" prefHeight="26.0" prefWidth="78.0" text="Resetear" />
+                                      </items>
+                                    </ToolBar>
                                  </children>
                               </VBox>
                            </children>
@@ -162,19 +204,9 @@
          <top>
             <MenuBar BorderPane.alignment="CENTER">
                <menus>
-                  <Menu mnemonicParsing="false" text="File">
+                  <Menu mnemonicParsing="false" text="Archivo">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Close" />
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Edit">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Delete" />
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Help">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="About" />
+                        <MenuItem mnemonicParsing="false" onAction="#cerrarVentana" text="Cerrar" />
                      </items>
                   </Menu>
                </menus>

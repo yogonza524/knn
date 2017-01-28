@@ -1,8 +1,8 @@
-/home/gonza/Dropbox/UTN/Practica supervisada/ModuloKVecinos/src/main/java/util/Axes.java
-/home/gonza/Dropbox/UTN/Practica supervisada/ModuloKVecinos/src/main/java/com/pichon/modulokvecinos/MainApp.java
-/home/gonza/Dropbox/UTN/Practica supervisada/ModuloKVecinos/src/main/java/util/Plot.java
-/home/gonza/Dropbox/UTN/Practica supervisada/ModuloKVecinos/src/main/java/util/Knn.java
-/home/gonza/Dropbox/UTN/Practica supervisada/ModuloKVecinos/src/main/java/com/pichon/modulokvecinos/KNNController.java
-/home/gonza/Dropbox/UTN/Practica supervisada/ModuloKVecinos/src/main/java/util/Punto.java
-/home/gonza/Dropbox/UTN/Practica supervisada/ModuloKVecinos/src/main/java/util/UtilKnn.java
-/home/gonza/Dropbox/UTN/Practica supervisada/ModuloKVecinos/src/main/java/util/AlmacenDatos.java
+/home/gonza/Desarrollos/Github/knn/src/main/java/util/Knn.java
+/home/gonza/Desarrollos/Github/knn/src/main/java/util/Plot.java
+/home/gonza/Desarrollos/Github/knn/src/main/java/util/Axes.java
+/home/gonza/Desarrollos/Github/knn/src/main/java/util/UtilKnn.java
+/home/gonza/Desarrollos/Github/knn/src/main/java/util/Punto.java
+/home/gonza/Desarrollos/Github/knn/src/main/java/util/AlmacenDatos.java
+/home/gonza/Desarrollos/Github/knn/src/main/java/com/pichon/modulokvecinos/KNNController.java
+/home/gonza/Desarrollos/Github/knn/src/main/java/com/pichon/modulokvecinos/MainApp.java
